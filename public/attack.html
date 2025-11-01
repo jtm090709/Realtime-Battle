@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <title>온라인 배틀게임</title>
+  <style>
+    body { background: #111; color: white; font-family: sans-serif; margin: 0; overflow: hidden; }
+    #lobby, #game { height: 100vh; display: flex; align-items: center; justify-content: center; flex-direction: column; }
+    #game { display: none; position: relative; }
+    #playerList, #chatBox { position: absolute; background: rgba(0,0,0,0.5); padding: 10px; border-radius: 8px; }
+    #playerList { top: 10px; left: 10px; }
+    #chatBox { bottom: 10px; left: 10px; width: 250px; height: 150px; overflow-y: auto; }
+    input, button { padding: 10px; margin: 5px; border: none; border-radius: 5px; }
+    #killLog { position: absolute; top: 10px; right: 10px; width: 250px; text-align: right; pointer-events: none; }
+    .kill-item { animation: fadeOut 3s forwards; }
+    @keyframes fadeOut { 0% {opacity:1;} 100% {opacity:0;} }
+  </style>
+</head>
+<body>
+  <div id="lobby">
+    <h1>⚔️ 온라인 배틀게임 ⚔️</h1>
+    <input id="nickname" placeholder="닉네임" />
+    <input id="roomCode" placeholder="방 코드 (예: A123)" />
+    <button id="joinBtn">게임 시작</button>
+  </div>
+
+  <div id="game">
+    <canvas id="gameCanvas" width="800" height="600"></canvas>
+    <div id="playerList"></div>
+    <div id="killLog"></div>
+    <div id="chatBox"></div>
+    <input id="chatInput" placeholder="메시지 입력..." />
+  </div>
+
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="game.js"></script>
+</body>
+</html>
