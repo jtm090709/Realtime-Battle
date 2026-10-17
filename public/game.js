@@ -115,4 +115,4 @@ setInterval(() => {
   if (keys['a']) me.x -= speed;
   if (keys['d']) me.x += speed;
   socket.emit('move', { x: me.x, y: me.y });
-}, 100);
+}, 10);
